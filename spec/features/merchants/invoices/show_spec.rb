@@ -3,6 +3,11 @@ require "rails_helper"
 RSpec.describe "Merchant Invoice Show Page", type: :feature do
   before :each do
     load_test_data
+
+    @discount1 = BulkDiscount.create!(merchant_id: @merchant_5.id, discount: 10, quantity: 2)
+    @discount2 = BulkDiscount.create!(merchant_id: @merchant_5.id, discount: 15, quantity: 4)
+    @discount3 = BulkDiscount.create!(merchant_id: @merchant_6.id, discount: 33, quantity: 6)
+    @discount4 = BulkDiscount.create!(merchant_id: @merchant_6.id, discount: 50, quantity: 10)
   end
 
   # User Story 16
@@ -39,5 +44,14 @@ RSpec.describe "Merchant Invoice Show Page", type: :feature do
     @invoice_item_1_i2_c6.reload
 
     expect(@invoice_item_1_i2_c6.status).to eq("shipped")
+  end
+
+  # Final US 6
+  it "displays the total discounted revenue for the invoice including bulk discounts" do
+    visit merchant_invoice_path(@merchant_5, @invoice_4_c6)
+
+    # @item_8_m5 unit price 30
+    # 20 units sold: 50% off > 10 units sold
+    expect(page).to have_content("Total Revenue after Discounts for Invoice: $300")
   end
 end

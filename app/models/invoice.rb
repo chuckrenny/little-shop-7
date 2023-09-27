@@ -4,6 +4,7 @@ class Invoice < ApplicationRecord
   has_many :invoice_items
   has_many :items, through: :invoice_items
   has_many :merchants, through: :items
+  has_many :bulk_discounts, through: :merchants
 
   validates_presence_of :status
 
@@ -30,5 +31,9 @@ class Invoice < ApplicationRecord
 
   def format_created_at
     self.created_at.strftime("%A, %B %d, %Y")
+  end
+
+  def discount_revenue
+    self.total_revenue - invoice_items.sum("(quantity * invoice_items.unit_price) * (bulk_discounts.discount / 100.00)")
   end
 end

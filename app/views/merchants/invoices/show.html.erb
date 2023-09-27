@@ -1,6 +1,7 @@
 <h2><%= @merchant.name %>'s Items Invoices </h2>
 
 <strong>Total Revenue for Invoice:</strong> <%= @invoice.total_revenue %><br>
+<strong>Total Revenue after Discounts for Invoice: $</strong> <%= @invoice.discount_revenue %><br>
 <ul>
   <% @invoice_items.each do |invoice_item| %>
     <li>

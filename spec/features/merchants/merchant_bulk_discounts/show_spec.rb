@@ -25,6 +25,6 @@ RSpec.describe "Merchant Bulk Discounts Show Page", type: :feature do
 
     click_link("Edit Discount")
 
-    expect(current_path).to be()
+    expect(current_path).to eq(edit_merchant_bulk_discount_path(@merchant_5, @discount2))
   end
 end
