@@ -4,6 +4,7 @@
   <div>
     <p><%= discount.discount %> % off for more than <%= discount.quantity %> items</p>
     <%= link_to "#{discount.discount} Percent Page", merchant_bulk_discount_path(@merchant, discount) %>
+    <br><%= link_to "Remove #{discount.discount}%", merchant_bulk_discount_path(@merchant, discount), method: :delete %><br>
   </div>
 <% end %>
 

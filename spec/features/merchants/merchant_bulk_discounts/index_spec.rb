@@ -31,4 +31,16 @@ RSpec.describe "Merchant Bulk Discounts Index Page", type: :feature do
 
     expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant_5))
   end
+
+  # Final US 3
+  it "displays a button to remove that discount" do
+    visit merchant_bulk_discounts_path(@merchant_5)
+
+    expect(page).to have_content("#{@discount1.discount} % off for more than 2 items")
+
+    click_link("Remove #{@discount1.discount}%")
+
+    expect(page).to_not have_content("#{@discount1.discount} % off for more than 2 items")
+    expect(current_path).to eq(merchant_bulk_discounts_path(@merchant_5))
+  end
 end
