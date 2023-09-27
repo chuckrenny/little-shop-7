@@ -1,4 +1,4 @@
-<h1>Bulk Discounts</h1>
+<h1>Bulk Discounts Index</h1>
 
 <% @bulk_discounts.each do |discount| %>
   <div>
@@ -6,3 +6,5 @@
     <%= link_to "#{discount.discount} Percent Page", merchant_bulk_discount_path(@merchant, discount) %>
   </div>
 <% end %>
+
+ <%= link_to "Create New Discount", new_merchant_bulk_discount_path(@merchant) %>
