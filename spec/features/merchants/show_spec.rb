@@ -102,4 +102,13 @@ RSpec.describe "Merchant Dashboard show page", type: :feature do
       expect(@item_4_m5.name).to appear_before(@item_8_m5.name)
     end
   end
+
+  # Final US 1
+  it "displays a link to view all discounts" do
+    visit merchant_dashboard_path(@merchant_5)
+
+    click_on("View Bulk Discounts")
+    # expect(page).to have_current_path("/merchants/#{@merchant_5.id}/discounts")
+    expect(current_path).to eq(merchant_bulk_discounts_path(@merchant_5))
+  end
 end

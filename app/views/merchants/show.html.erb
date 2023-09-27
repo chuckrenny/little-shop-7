@@ -23,6 +23,7 @@
 
 <p><%= link_to "#{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></p>
 <p><%= link_to "#{@merchant.name} Invoices", "/merchants/#{@merchant.id}/invoices" %></p>
+<p><%= link_to "View Bulk Discounts", merchant_bulk_discounts_path(@merchant) %></p>
 
 
 
